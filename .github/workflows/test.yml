@@ -47,6 +47,7 @@ jobs:
           toolchain: ${{ matrix.rust }}
       - name: Install dependencies
         run: sudo apt-get install -y libsecret-1-dev
+      - uses: t1m0thyj/unlock-keyring@v1
       - name: Build
         run: cargo build --verbose
       - name: Run tests
