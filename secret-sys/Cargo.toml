@@ -14,3 +14,4 @@ glib = "*"
 
 [build-dependencies]
 pkg-config = "0.3"
+bindgen = "0.68.1"

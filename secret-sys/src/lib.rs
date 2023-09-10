@@ -1,9 +1,11 @@
+#![allow(non_upper_case_globals)]
 #![allow(non_camel_case_types)]
+#![allow(non_snake_case)]
 extern crate libc;
 extern crate glib;
 
 use libc::{c_uint, c_char, c_int, c_ulong, c_long, size_t};
-use glib::ffi::{GError, GType, GList, gboolean, gpointer, GHashTable};
+use glib::ffi::{GError, GType, GList, gboolean, GHashTable};
 type gsize = size_t;
 
 //glib stuff not provided by glib-rs
@@ -101,6 +103,7 @@ extern "C" {
     pub fn secret_value_get_text        (secret_value: *mut SecretValue) -> *const gchar;
     pub fn secret_value_get_content_type(secret_value: *mut SecretValue) -> *const gchar;
     pub fn secret_value_ref             (secret_value: *mut SecretValue) -> *mut SecretValue;
-    pub fn secret_value_unref           (value: gpointer);
     pub fn secret_value_get_type        () -> GType;
 }
+
+include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
