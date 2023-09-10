@@ -47,7 +47,7 @@ impl SecretService {
         SecretService::with_flags(SECRET_SERVICE_OPEN_SESSION | SECRET_SERVICE_LOAD_COLLECTIONS)
     }
 
-    fn with_flags(flags: i32) -> SecretResult<Self> {
+    fn with_flags(flags: u32) -> SecretResult<Self> {
         let mut err = ptr::null_mut();
         let ptr = unsafe {
             ffi::secret_service_get_sync(flags, ptr::null_mut(), &mut err)
@@ -214,15 +214,15 @@ impl SecretService {
 }
 
 #[allow(dead_code)]
-const SECRET_SERVICE_NONE: i32              = 0;
-const SECRET_SERVICE_OPEN_SESSION: i32      = 1 << 1;
-const SECRET_SERVICE_LOAD_COLLECTIONS: i32  = 1 << 2;
+const SECRET_SERVICE_NONE: u32              = 0;
+const SECRET_SERVICE_OPEN_SESSION: u32      = 1 << 1;
+const SECRET_SERVICE_LOAD_COLLECTIONS: u32  = 1 << 2;
 
 #[allow(dead_code)]
-const SECRET_SEARCH_NONE: i32               = 0;
-const SECRET_SEARCH_ALL: i32                = 1 << 1;
-const SECRET_SEARCH_UNLOCK: i32             = 1 << 2;
-const SECRET_SEARCH_LOAD_SECRETS: i32       = 1 << 3;
+const SECRET_SEARCH_NONE: u32               = 0;
+const SECRET_SEARCH_ALL: u32                = 1 << 1;
+const SECRET_SEARCH_UNLOCK: u32             = 1 << 2;
+const SECRET_SEARCH_LOAD_SECRETS: u32       = 1 << 3;
 
 #[cfg(test)]
 mod test {

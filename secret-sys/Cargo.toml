@@ -9,7 +9,6 @@ repository = "https://github.com/nicokoch/secret-rs"
 license = "MIT"
 
 [dependencies]
-libc = "*"
 glib = "*"
 
 [build-dependencies]

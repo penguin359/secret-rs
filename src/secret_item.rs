@@ -224,6 +224,6 @@ impl Lock<SecretItem> for SecretItem {
     }
 }
 
-const SECRET_ITEM_CREATE_NONE: i32        = 0;
+const SECRET_ITEM_CREATE_NONE: u32        = 0;
 #[allow(dead_code)]
-const SECRET_ITEM_CREATE_REPLACE: i32     = 1 << 1;
+const SECRET_ITEM_CREATE_REPLACE: u32     = 1 << 1;

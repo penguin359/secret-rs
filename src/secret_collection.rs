@@ -230,8 +230,8 @@ impl Lock<SecretCollection> for SecretCollection {
 }
 
 #[allow(dead_code)]
-const SECRET_COLLECTION_NONE: i32        = 0;
-const SECRET_COLLECTION_LOAD_ITEMS: i32  = 1 << 1;
+const SECRET_COLLECTION_NONE: u32        = 0;
+const SECRET_COLLECTION_LOAD_ITEMS: u32  = 1 << 1;
 
 
 #[cfg(test)]
