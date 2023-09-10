@@ -1,0 +1,57 @@
+name: Rust
+
+on:
+  push:
+    branches: '*'
+  pull_request:
+    branches: [master]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        #build: [stable, beta, nightly, macos, windows, msrv]
+        build: [stable, beta, nightly, msrv]
+        include:
+          - build: stable
+            os: ubuntu-latest
+            rust: stable
+          - build: beta
+            os: ubuntu-latest
+            rust: beta
+          - build: nightly
+            os: ubuntu-latest
+            rust: nightly
+          #- build: macos
+          #  os: macos-latest
+          #  rust: stable
+          #- build: windows
+          #  os: windows-latest
+          #  rust: stable
+          - build: msrv
+            os: ubuntu-20.04
+            #sync MSRV with docs: guide/src/guide/installation.md and Cargo.toml
+            rust: 1.66.0
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          lfs: true
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: ${{ matrix.rust }}
+      - name: Install dependencies
+        run: sudo apt-get install -y libsecret-1-dev
+      - name: Build
+        run: cargo build --verbose
+      - name: Run tests
+        run: cargo test --verbose --workspace
+      - name: Run print example
+        run: cargo run --example print_all_secrets
+      - name: Run search example
+        run: cargo run --example search_chrome_secrets
